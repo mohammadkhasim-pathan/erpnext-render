@@ -1,0 +1,57 @@
+services:
+  - type: web
+    name: erpnext-web
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_TYPE
+        value: mysql
+      - key: DB_HOST
+        value: ${DB_HOST}
+      - key: DB_PORT
+        value: ${DB_PORT}
+      - key: DB_USER
+        value: ${DB_USER}
+      - key: DB_PASSWORD
+        value: ${DB_PASSWORD}
+      - key: DB_NAME
+        value: ${DB_NAME}
+      - key: REDIS_CACHE
+        value: ${REDIS_CACHE}
+      - key: REDIS_QUEUE
+        value: ${REDIS_QUEUE}
+      - key: REDIS_SOCKETIO
+        value: ${REDIS_SOCKETIO}
+      - key: SITE_NAME
+        value: ${SITE_NAME}
+      - key: ADMIN_PASSWORD
+        value: ${ADMIN_PASSWORD}
+
+  - type: worker
+    name: worker-default
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    startCommand: "./worker-default.sh"
+
+  - type: worker
+    name: worker-short
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    startCommand: "./worker-short.sh"
+
+  - type: worker
+    name: worker-long
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    startCommand: "./worker-long.sh"
+
+  - type: worker
+    name: scheduler
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    startCommand: "./scheduler.sh"
