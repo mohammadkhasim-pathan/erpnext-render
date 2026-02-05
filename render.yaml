@@ -33,25 +33,25 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./Dockerfile
-    startCommand: "./worker-default.sh"
+    command: "./worker-default.sh"
 
   - type: worker
     name: worker-short
     env: docker
     plan: free
     dockerfilePath: ./Dockerfile
-    startCommand: "./worker-short.sh"
+    command: "./worker-short.sh"
 
   - type: worker
     name: worker-long
     env: docker
     plan: free
     dockerfilePath: ./Dockerfile
-    startCommand: "./worker-long.sh"
+    command: "./worker-long.sh"
 
   - type: worker
     name: scheduler
     env: docker
     plan: free
     dockerfilePath: ./Dockerfile
-    startCommand: "./scheduler.sh"
+    command: "./scheduler.sh"
